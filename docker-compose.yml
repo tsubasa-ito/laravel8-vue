@@ -21,7 +21,7 @@ services:
     image: postgres:10-alpine
     restart: always
     volumes:
-      - ./db/data/:/var/lib/postgresql/data/:cached
+      - ./docker/db/data/:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
