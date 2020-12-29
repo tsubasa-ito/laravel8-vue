@@ -11,7 +11,7 @@ services:
       - .:/var/www/html
 
   app:
-    image: php:7.4-fpm
+    build: ./docker/app
     volumes:
       - .:/var/www/html
     depends_on:
