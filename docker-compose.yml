@@ -28,3 +28,14 @@ services:
       POSTGRES_DATABASE: sample
     ports:
       - "5432:5432"
+
+  minio:
+    image: minio/minio
+    ports:
+      - "${MINIO_PORT}:9000"
+    volumes:
+      - ./.docker/minio/data:/export
+    environment:
+      MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
+      MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
+    command: server /export
