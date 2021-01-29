@@ -39,3 +39,12 @@ services:
       MINIO_ACCESS_KEY: SEN2021INTERN
       MINIO_SECRET_KEY: JACKDANIELS
     command: server /export
+  miniomc:
+    build:
+      context: ./docker/miniomc
+    environment:
+      - 'MINIO_ACCESS_KEY=SEN2021INTERN'
+      - 'MINIO_SECRET_KEY=JACKDANIELS'
+      - 'MINIO_BUCKET=sample'
+    depends_on:
+      - minio
