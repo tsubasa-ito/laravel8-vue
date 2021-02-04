@@ -7,6 +7,7 @@
 
                     <div class="card-body">
                         I'm an example component.
+                        <p>{{messages.content}}</p>
                     </div>
                 </div>
             </div>
@@ -15,9 +16,20 @@
 </template>
 
 <script>
+// console.log(messages.content);
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+        data() {
+            return {
+                messages: [
+                    {
+                        content: 'おけ'
+                    }
+                ]
+            }
+        },
+        created() {
+            const uri = '/api/';
+            axios.get(uri).then(response => console.log(response.data))
+       },
+}
 </script>
