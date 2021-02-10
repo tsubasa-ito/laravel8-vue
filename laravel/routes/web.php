@@ -20,9 +20,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'MessageController@index')->name('message.index');
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::get('/{any}', function () {
-//     return view('layouts.app');
-// })->where('any', '.*');

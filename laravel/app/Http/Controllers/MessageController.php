@@ -15,7 +15,6 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::all();
-        // return response()->json($messages);
 
         return view('message.index', [
             response()->json($messages)

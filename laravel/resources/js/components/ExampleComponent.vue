@@ -16,7 +16,6 @@
 </template>
 
 <script>
-// console.log(messages.content);
     export default {
         data() {
             return {
@@ -30,6 +29,6 @@
         created() {
             const uri = '/api/';
             axios.get(uri).then(response => console.log(response.data))
-       },
-}
+        },
+    }
 </script>
