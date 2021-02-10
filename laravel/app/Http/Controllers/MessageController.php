@@ -15,10 +15,7 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::all();
-
-        return view('message.index', [
-            'message' => $messages,
-        ]);
+        return response()->json($messages);
     }
 
     /**
@@ -39,7 +36,7 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Message::create(['content' => $request->message['content']]);
     }
 
     /**

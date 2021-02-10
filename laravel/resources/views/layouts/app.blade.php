@@ -73,10 +73,11 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
+    <div id="app">
+        <router-view></router-view>
+        <p>ここはlayouts/app.blade.php</p>
+    </div>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

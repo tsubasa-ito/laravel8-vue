@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
-
-Auth::routes();
-
-Route::get('/', 'MessageController@index')->name('message.index');
+Route::get('/{any}', function () {
+    return view('layouts.app');
+})->where('any', '.*');
