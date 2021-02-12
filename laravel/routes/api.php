@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/', 'MessageController@index');
 Route::post('/create', 'MessageController@store');
+Route::delete('/delete/{id}', 'MessageController@destroy');
