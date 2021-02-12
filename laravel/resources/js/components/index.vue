@@ -19,10 +19,11 @@
     export default {
         data() {
             return {
-                messages:
+                messages:[
                     {
                         content: ''
                     }
+                ]
             }
         },
         created() {
@@ -33,8 +34,7 @@
         },
         methods: {
             deleteMessage(id){
-               console.log(id);
-               const uri = `/api/delete/`+id;
+               const uri = `/api/delete/${id}`;
                axios.delete(uri, {
                    message: this.message
                    })

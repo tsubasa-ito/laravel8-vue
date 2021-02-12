@@ -26,7 +26,6 @@
         },
         methods: {
             addMessage(){
-               console.log(this.message);
                const uri = `/api/create/`;
                axios.post(uri, {
                    message: this.message
