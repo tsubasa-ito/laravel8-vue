@@ -36,7 +36,8 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        return Message::create(['content' => $request->message['content']]);
+        // dd('日本語');
+        return Message::create(['content' => $request->messages['content']]);
     }
 
     /**
