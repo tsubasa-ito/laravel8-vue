@@ -75,8 +75,8 @@
         </nav>
     </div>
     <div id="app">
+        @yield('content')
         <router-view></router-view>
-        <p>ここはlayouts/app.blade.php</p>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
