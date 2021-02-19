@@ -19,16 +19,7 @@
     export default {
         data() {
             return {
-                messages: [
-                    {
-                        content: 'おけ'
-                    }
-                ]
             }
-        },
-        created() {
-            const uri = '/api/';
-            axios.get(uri).then(response => console.log(response.data))
         },
     }
 </script>

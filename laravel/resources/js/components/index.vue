@@ -2,9 +2,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <button type="button" class="btn btn-secondary">
-                    <router-link to='/create' class="create-btn">記事作成</router-link>
-                </button>
+                <!-- <button type="button" class="btn btn-secondary"> -->
+                    <!-- <router-link to='/create' class="create-btn">記事作成</router-link> -->
+
+                    <textarea v-model="newMessage" class="form-control mt-2" rows="3"></textarea>
+                    <button @click="addMessage()" class="btn btn-primary mb-2" type="submit">Add</button>
+
+                <!-- </button> -->
                 <div v-for="message in messages" :key="message.id" class="card">
                     <div class="card-body">
                         {{ message.content }}
@@ -19,11 +23,15 @@
     export default {
         data() {
             return {
-                messages:[
-                    {
+                messages:
+                    [
+                        {
+                        id:'',
                         content: ''
-                    }
-                ]
+                        }
+                    ],
+                newMessage: ''
+
             }
         },
         created() {
@@ -40,6 +48,20 @@
                    })
                 .then((response) => {
                     this.$router.go({ name: 'index' })
+               });
+            },
+            addMessage(){
+               const uri = `/api/create/`;
+               axios.post(uri, {
+                   message: this.newMessage
+                   })
+                .then((response) => {
+                    this.messages.push(
+                        {
+                            'id': response.data.id,
+                            'content': response.data.content
+                        }
+                    )
                });
             },
         },

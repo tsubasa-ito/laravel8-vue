@@ -36,7 +36,8 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        return Message::create(['content' => $request->message['content']]);
+        $params = $request->all();
+        return Message::create(['content' => $params['message']]);
     }
 
     /**
