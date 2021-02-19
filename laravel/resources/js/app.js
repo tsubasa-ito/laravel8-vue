@@ -25,7 +25,6 @@ Vue.use(VueRouter);
 
 //components
 import Index from './components/index.vue';
-import Create from './components/create.vue';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -40,11 +39,6 @@ const routes = [
         name: 'index',
         path: '/',
         component: Index
-    },
-    {
-        name: 'create',
-        path: '/create',
-        component: Create
     },
 ];
 
