@@ -5,14 +5,14 @@
                 <!-- <button type="button" class="btn btn-secondary"> -->
                     <!-- <router-link to='/create' class="create-btn">記事作成</router-link> -->
 
-                    <textarea v-model="messages.content" class="form-control mt-2" rows="3"></textarea>
+                    <textarea v-model="newMessage" class="form-control mt-2" rows="3"></textarea>
                     <button @click="addMessage()" class="btn btn-primary mb-2" type="submit">Add</button>
 
                 <!-- </button> -->
                 <div v-for="message in messages" :key="message.id" class="card">
                     <div class="card-body">
                         {{ message.content }}
-                        <button @click="deleteMessage(message.id).prevent" type="submit" class="btn btn-danger">記事の削除</button>
+                        <button @click="deleteMessage(message.id)" type="submit" class="btn btn-danger">記事の削除</button>
                     </div>
                 </div>
             </div>
@@ -24,9 +24,13 @@
         data() {
             return {
                 messages:
-                    {
+                    [
+                        {
+                        id:'',
                         content: ''
-                    }
+                        }
+                    ],
+                newMessage: ''
 
             }
         },
@@ -49,10 +53,15 @@
             addMessage(){
                const uri = `/api/create/`;
                axios.post(uri, {
-                   message: this.message
+                   message: this.newMessage
                    })
                 .then((response) => {
-                   this.$router.go({name: 'index'});
+                    this.messages.push(
+                        {
+                            'id': response.data.id,
+                            'content': response.data.content
+                        }
+                    )
                });
             },
         },
