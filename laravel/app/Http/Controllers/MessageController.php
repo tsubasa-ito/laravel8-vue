@@ -10,6 +10,10 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::orderBy('id', 'desc')->get();
+        foreach ($messages as $message) {
+            $date = date_format($message->created_at, 'Y-m-d H:i');
+            $message->date = $date;
+        }
         return response()->json($messages);
     }
 

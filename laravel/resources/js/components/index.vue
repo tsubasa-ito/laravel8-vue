@@ -6,7 +6,8 @@
                 <button @click="addMessage()" class="btn btn-primary mb-2" type="submit">Add</button>
                 <div v-for="message in messages" :key="message.id" class="card">
                     <div class="card-body">
-                        {{ message.content }}
+                        <p>{{ message.content }}</p>
+                        <p>{{ message.date }}</p>
                         <button @click="deleteMessage(message.id)" type="submit" class="btn btn-danger">記事の削除</button>
                     </div>
                 </div>
@@ -22,7 +23,8 @@
                     [
                         {
                         id:'',
-                        content: ''
+                        content: '',
+                        date: ''
                         }
                     ],
                 newMessage: ''
