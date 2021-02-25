@@ -21,6 +21,11 @@ class MessageController extends Controller
         return view('mypage');
     }
 
+    public function top()
+    {
+        return view('message.index');
+    }
+
 
     public function create()
     {

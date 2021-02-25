@@ -2,12 +2,8 @@
 
 @section('content')
 
-@guest
-    this is guest page.
-
-@else
-    this is logind page.
-    <index-component user-id= {{ Auth::id() }} ></index-component>
-@endguest
+@auth
+    <mypage-component user-id= {{ Auth::id() }} ></mypage-component>
+@endauth
 
 @endsection
