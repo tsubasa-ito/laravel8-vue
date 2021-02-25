@@ -7,7 +7,7 @@
 
 @else
     this is logind page.
-    <index-component></index-component>
+    <index-component user-id= {{ Auth::id() }} ></index-component>
 @endguest
 
 @endsection

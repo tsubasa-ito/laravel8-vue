@@ -11,8 +11,7 @@ class MessageController extends Controller
     {
         $messages = Message::orderBy('id', 'desc')->get();
         foreach ($messages as $message) {
-            $date = date_format($message->created_at, 'Y-m-d H:i');
-            $message->date = $date;
+            $message->date = date_format($message->created_at, 'Y-m-d H:i');;
         }
         return response()->json($messages);
     }
@@ -31,7 +30,9 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $params = $request->all();
-        return Message::create(['content' => $params['message']]);
+        return Message::create(
+            ['content' => $params['message'], 'user_id' => $params['user_id']]
+        );
     }
 
     public function show($id)

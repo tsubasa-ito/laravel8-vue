@@ -28,9 +28,11 @@
                         }
                     ],
                 newMessage: ''
-
             }
         },
+        props:[
+            'userId'
+        ],
         created() {
             const uri = '/api';
             axios.get(uri).then(response => {
@@ -50,7 +52,8 @@
             addMessage(){
                const uri = `/api/create/`;
                axios.post(uri, {
-                   message: this.newMessage
+                   message: this.newMessage,
+                   user_id: this.userId
                    })
                 .then((response) => {
                     this.messages.push(
