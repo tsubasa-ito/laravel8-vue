@@ -59,6 +59,11 @@
                 });
             },
             addMessage(){
+                if (this.newMessage == "") {
+                    alert("入力してください");
+                return;
+                }
+
                 const uri = `/api/create/`;
                 axios.post(uri, {
                    message: this.newMessage,
