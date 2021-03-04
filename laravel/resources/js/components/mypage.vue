@@ -5,10 +5,10 @@
                 <textarea v-model="newMessage" class="form-control mt-2" rows="3"></textarea>
                 <button @click="addMessage()" class="btn btn-primary mb-2" type="submit">Add</button>
                 <div v-for="message in messages" :key="message.id" class="card">
-                    <div class="card-body">
+                    <div v-if="userId == message.user_id" class="card-body">
                         <p>{{ message.content }}</p>
                         <p>{{ message.date }}</p>
-                        <button v-if="userId == message.user_id" @click="deleteMessage(message.id)" type="submit" class="btn btn-danger">削除</button>
+                        <button @click="deleteMessage(message.id)" type="submit" class="btn btn-danger">記事の削除</button>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 axios.delete(uri, {
                    message: this.message
                    })
-                .catch( error => { console.log(error); });
+                   .catch( error => { console.log(error); });
             },
             addMessage(){
                 const uri = `/api/create/`;
