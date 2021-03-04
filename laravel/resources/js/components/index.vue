@@ -19,15 +19,14 @@
     export default {
         data() {
             return {
-                messages:
-                    [
-                        {
-                        id:'',
-                        content: '',
-                        date: '',
-                        user_id: ''
-                        }
-                    ],
+                messages: [
+                    {
+                    id:'',
+                    content: '',
+                    date: '',
+                    user_id: ''
+                    }
+                ],
                 newMessage: ''
             }
         },
@@ -42,18 +41,18 @@
         },
         methods: {
             deleteMessage(id){
-               const uri = `/api/delete/${id}`;
-               axios.delete(uri, {
+                const uri = `/api/delete/${id}`;
+                axios.delete(uri, {
                    message: this.message
                    })
-                   .catch( error => { console.log(error); });
+                .catch( error => { console.log(error); });
             },
             addMessage(){
-               const uri = `/api/create/`;
-               axios.post(uri, {
+                const uri = `/api/create/`;
+                axios.post(uri, {
                    message: this.newMessage,
                    user_id: this.userId
-                   })
+                })
                 .then((response) => {
                     this.messages.push(
                         {
@@ -62,7 +61,7 @@
                             'user_id': response.data.user_id,
                         }
                     )
-               });
+                });
             },
         },
     }
