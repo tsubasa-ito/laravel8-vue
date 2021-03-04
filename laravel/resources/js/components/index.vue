@@ -36,16 +36,27 @@
         created() {
             const uri = '/api';
             axios.get(uri).then(response => {
-               this.messages = response.data;
+               this.messages = response.data.data;
             });
         },
         methods: {
+            nowMessage() {
+                const uri = '/api';
+                axios.get(uri).then(response => {
+                    this.messages = response.data.data;
+                });
+            },
             deleteMessage(id){
                 const uri = `/api/delete/${id}`;
                 axios.delete(uri, {
                    message: this.message
                    })
-                .catch( error => { console.log(error); });
+                .then (response => {
+                    this.nowMessage();
+                })
+                .catch( error => {
+                    console.log(error);
+                });
             },
             addMessage(){
                 const uri = `/api/create/`;
@@ -61,6 +72,8 @@
                             'user_id': response.data.user_id,
                         }
                     )
+                    this.nowMessage();
+                    this.newMessage = ''
                 });
             },
         },
