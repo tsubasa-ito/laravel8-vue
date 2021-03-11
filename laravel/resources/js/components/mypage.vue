@@ -61,7 +61,7 @@
             addMessage(){
                 if (this.newMessage == "") {
                     alert("入力してください");
-                return;
+                    return;
                 }
 
                 const uri = `/api/create/`;
