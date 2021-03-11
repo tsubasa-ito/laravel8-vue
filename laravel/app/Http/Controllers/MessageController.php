@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\MessageResource;
 
 class MessageController extends Controller
 {
@@ -13,7 +15,7 @@ class MessageController extends Controller
         foreach ($messages as $message) {
             $message->date = date_format($message->created_at, 'Y-m-d H:i');;
         }
-        return response()->json($messages);
+        return MessageResource::collection($messages);
     }
 
     public function mypage()
