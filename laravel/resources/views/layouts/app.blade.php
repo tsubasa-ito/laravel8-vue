@@ -78,7 +78,9 @@
         </nav>
     </div>
     <div id="app">
-        @yield('content')
+        <v-app>
+            @yield('content')
+        </v-app>
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
