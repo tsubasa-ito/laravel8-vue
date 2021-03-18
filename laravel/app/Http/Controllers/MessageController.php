@@ -38,7 +38,10 @@ class MessageController extends Controller
     {
         $params = $request->all();
         return Message::create(
-            ['content' => $params['message'], 'user_id' => $params['user_id']]
+            [
+                'content' => $params['message'],
+                'user_id' => $params['user_id']
+            ]
         );
     }
 
