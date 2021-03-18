@@ -18,6 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', 'MessageController@index');
-Route::post('/create', 'MessageController@store');
-Route::delete('/delete/{id}', 'MessageController@destroy');
+Route::get('/', 'MessageController@index')->name('api.index');
+Route::post('/create', 'MessageController@store')->name('api.store');
+Route::delete('/delete/{id}', 'MessageController@destroy')->name('api.delete');
