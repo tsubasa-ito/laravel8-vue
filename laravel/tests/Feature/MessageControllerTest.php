@@ -18,16 +18,13 @@ class MessageControllerTest extends TestCase
 
     public function testIndex()
     {
-        // `messages` テーブルにデータを作成
         $test_message = Message::factory()->create([
             'content' => 'IndexTest1Content',
             'user_id' => 1
         ]);
 
-        // GET リクエスト
         $response = $this->get(route('api.index'));
 
-        // 1件のレスポンスがある
         $response->assertOk()
             ->assertJsonCount(1)
             ->assertJsonFragment([
@@ -35,13 +32,11 @@ class MessageControllerTest extends TestCase
                 'user_id' => 1
             ]);
 
-        // DBのデータチェック
         $this->assertDatabaseHas('messages', [
             'content' => 'IndexTest1Content',
             'user_id' => 1
         ]);
 
-        // レスポンスの内容を取得して JSON デコードする
         $response->assertJson([
             'data'=> [
                 [
@@ -50,5 +45,42 @@ class MessageControllerTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    public function testStore()
+    {
+        $this->withoutExceptionHandling();
+
+        $data = [
+            'message' => 'StoreTest2Content',
+            'user_id' => 1,
+        ];
+
+        $response = $this->post(route('api.store'), $data);
+
+        $response->assertStatus(201)
+            ->assertJsonFragment([
+                'content' => 'StoreTest2Content',
+                'user_id' => 1,
+            ]);
+    }
+
+    public function testDelete()
+    {
+        $this->withoutExceptionHandling();
+
+        $delete_message = Message::factory()->create([
+            'content' => 'DeleteTest3Content',
+            'user_id' => 1
+        ]);
+
+        $response = $this->delete(route('api.delete', [$delete_message->id]));
+
+        $response->assertOk();
+
+        $this->assertDatabaseMissing('messages', [
+            'content' => 'DeleteTest3Content',
+        ]);
+
     }
 }

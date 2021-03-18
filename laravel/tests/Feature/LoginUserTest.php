@@ -16,9 +16,6 @@ class LoginUserTest extends TestCase
 
     public function testUser()
     {
-        $user = User::factory()->create([
-            'email' => 'test1@test.com',
-            'password' => 'test1test1',
-        ]);
+        $user = User::factory()->count(2)->create();
     }
 }
