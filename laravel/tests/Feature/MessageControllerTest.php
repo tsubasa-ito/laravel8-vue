@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use App\Models\Message;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 class MessageControllerTest extends TestCase
 {
 
+    use RefreshDatabase;
+
     public function setUp(): void
     {
         parent::setUp();
@@ -18,6 +21,12 @@ class MessageControllerTest extends TestCase
 
     public function testIndex()
     {
+
+        User::factory()->create([
+            'email' => 'Indexl123@test.com',
+            'password'  => bcrypt('IndexTest456')
+        ]);
+
         $test_message = Message::factory()->create([
             'content' => 'IndexTest1Content',
             'user_id' => 1
@@ -37,9 +46,14 @@ class MessageControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        User::factory()->create([
+            'email' => 'StoreYouser123@test.com',
+            'password'  => bcrypt('StoreYouser456')
+        ]);
+
         $data = [
             'message' => 'StoreTest2Content',
-            'user_id' => 1,
+            'user_id' => 2,
         ];
 
         $response = $this->post(route('api.store'), $data);
@@ -47,7 +61,7 @@ class MessageControllerTest extends TestCase
         $response->assertStatus(201)
             ->assertJsonFragment([
                 'content' => 'StoreTest2Content',
-                'user_id' => 1,
+                'user_id' => 2,
             ]);
     }
 
@@ -55,9 +69,14 @@ class MessageControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        User::factory()->create([
+            'email' => 'DeleteYouser123@test.com',
+            'password'  => bcrypt('DeleteYouser456')
+        ]);
+
         $delete_message = Message::factory()->create([
             'content' => 'DeleteTest3Content',
-            'user_id' => 1
+            'user_id' => 3
         ]);
 
         $response = $this->delete(route('api.delete', [$delete_message->id]));

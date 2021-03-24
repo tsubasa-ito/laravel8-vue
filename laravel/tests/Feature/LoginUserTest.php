@@ -9,13 +9,15 @@ use Tests\TestCase;
 
 class LoginUserTest extends TestCase
 {
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
+    use RefreshDatabase;
 
-    public function testUser()
-    {
-        $user = User::factory()->count(2)->create();
-    }
+    // public function setUp(): void
+    // {
+    //     parent::setUp();
+    // }
+
+    // public function testUser()
+    // {
+    //     $user = User::factory()->count(2)->create();
+    // }
 }
