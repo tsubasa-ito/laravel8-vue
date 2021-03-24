@@ -31,20 +31,6 @@ class MessageControllerTest extends TestCase
                 'content' => 'IndexTest1Content',
                 'user_id' => 1
             ]);
-
-        $this->assertDatabaseHas('messages', [
-            'content' => 'IndexTest1Content',
-            'user_id' => 1
-        ]);
-
-        $response->assertJson([
-            'data'=> [
-                [
-                    'content' => 'IndexTest1Content',
-                    'user_id' => 1
-                ]
-            ]
-        ]);
     }
 
     public function testStore()
@@ -76,11 +62,6 @@ class MessageControllerTest extends TestCase
 
         $response = $this->delete(route('api.delete', [$delete_message->id]));
 
-        $response->assertOk();
-
-        $this->assertDatabaseMissing('messages', [
-            'content' => 'DeleteTest3Content',
-        ]);
-
+        $response->assertNoContent();
     }
 }

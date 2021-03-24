@@ -52,7 +52,10 @@
                    message: this.message
                    })
                 .then (response => {
-                    this.nowMessage();
+                    const index = this.messages.findIndex(
+                        message => message.id == id
+                    );
+                    this.messages.splice(index, 1);
                 })
                 .catch( error => {
                     console.log(error);
