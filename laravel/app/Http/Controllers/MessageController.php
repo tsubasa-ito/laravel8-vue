@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Models\Message;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\MessageResource;
@@ -38,7 +39,10 @@ class MessageController extends Controller
     {
         $params = $request->all();
         return Message::create(
-            ['content' => $params['message'], 'user_id' => $params['user_id']]
+            [
+                'content' => $params['message'],
+                'user_id' => $params['user_id']
+            ]
         );
     }
 
@@ -61,6 +65,6 @@ class MessageController extends Controller
     {
         $message = Message::find($id);
         $message->delete();
-        return response()->json('deleted');
+        return response(Response::$statusTexts[Response::HTTP_NO_CONTENT], Response::HTTP_NO_CONTENT);
     }
 }
