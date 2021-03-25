@@ -12,7 +12,7 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Message::orderBy('id', 'desc')->get();
+        $messages = Message::orderBy('id', 'desc')->paginate(10);
         foreach ($messages as $message) {
             $message->date = date_format($message->created_at, 'Y-m-d H:i');;
         }

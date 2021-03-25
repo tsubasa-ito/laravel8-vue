@@ -4,6 +4,8 @@ window.Vue = require('vue');
 
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import '@mdi/font/css/materialdesignicons.css';
+
 Vue.use(Vuetify);
 
 //components
@@ -13,5 +15,7 @@ Vue.component('mypage-component', require('./components/mypage.vue').default);
 
 new Vue({
     el: '#app',
-    vuetify: new Vuetify()
+    vuetify: new Vuetify({
+        iconfont: 'mdi',
+    })
 })
